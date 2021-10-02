@@ -23,13 +23,11 @@
     </style>
 </head>
 
-
-
 <body class="m-5">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-               {%if user.is_authenticated%}
+                {%if user.is_authenticated%}
                 <p>{{user}}</p>
                 {%endif%}
                 <div class="card">
@@ -48,9 +46,8 @@
                         </li>
                         {%endfor %}
 
-                     
-                        <a href="{%url 'register'%}" class="btn btn-dark btn-block btn-sm m-1">Register</a>
-                        <a href="{%url 'login'%}" class="btn btn-dark btn-block btn-sm m-1">Login</a>
+
+                        <a href="{%url 'logout'%}" class="btn btn-dark btn-block btn-sm m-1">Logout</a>
                     </ul>
                 </div>
 
