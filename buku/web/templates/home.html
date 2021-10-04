@@ -59,14 +59,16 @@
                     {% for buku in semua %}
                     <div class="col-md-4">
                         <div class="card my-2">
-
-                            <img class="image-thumbail" src="{{buku.thumb.url}}" alt="Card image cap">
+                            <img class="image-thumbail" src="{{ buku.thumb.url }}" alt="Card image cap">
                             <div class="card-body">
-                                 <h6>{{buku.title}}</h6>
+                                 <h6>{{buku.user}}</h6>
+                                <h1>{{buku.title}}</h1>
                                 <small>Category: {{buku.categories}}</small>
                             </div>
-                            <a href="{%url 'update' buku.id%}" class="btn btn-outline-warning btn-sm m-1">Update</a>
-                            <a href="{%url 'delete' buku.id%}" class="btn btn-outline-danger btn-sm m-1">Delete</a>
+                            {%if request.user.id == buku.user.id%}
+                                <a href="{%url 'update' buku.id%}" class="btn btn-outline-warning btn-sm m-1">Update</a>
+                                <a href="{%url 'delete' buku.id%}" class="btn btn-outline-danger btn-sm m-1">Delete</a>
+                            {%endif%}
                             <a href="{%url 'detail' buku.slug%}" class="btn btn-outline-dark btn-sm m-1">View</a>
 
 

@@ -39,14 +39,11 @@
                             <a href="">All</a>
                         </li>
                         {%for cat in category%}
-
                         <li class=" list-group-item">
                             <a href="{%url 'categoris' cat%}">{{cat.nama}}
                             </a>
                         </li>
                         {%endfor %}
-
-
                         <a href="{%url 'logout'%}" class="btn btn-dark btn-block btn-sm m-1">Logout</a>
                     </ul>
                 </div>

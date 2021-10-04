@@ -63,17 +63,19 @@ def create(request):
     context = {
         'forms': form
     }
-    group_model = Group.objects.get(name='Pembaca')
-    user = request.user.groups.all()
-    if group_model in user:
-        return render(request,'notfound.html')
-    else:
-        return render(request, 'create.html', context)
+
+    return render(request, 'create.html', context)
 
 
 @login_required(login_url=settings.LOGIN_URL)
 def update(request, update):
     update = get_object_or_404(models.Post, id=update)
+
+    #validasi kepemilikian
+    if User.id != update.user.id:
+        return render(request,'error.html')
+
+
     form = forms.postForm(request.POST or None, request.FILES or None, instance=update)
     if request.method == 'POST':
         if form.is_valid():
@@ -92,13 +94,8 @@ def update(request, update):
 
 @login_required(login_url=settings.LOGIN_URL)
 def delete(request, delete):
-
-    group_model = Group.objects.get(name='Pembaca')
-    user = request.user.groups.all()
-    if group_model in user:
-        return render(request, 'notfound.html')
-    else:
         models.Post.objects.filter(id=delete).delete()
+
         return redirect('index')
 
 
