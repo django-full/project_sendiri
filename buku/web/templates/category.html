@@ -41,7 +41,7 @@
 
 
                         <a href="{%url 'create'%}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
-                        <a href="" class="btn btn-dark btn-block btn-sm m-1">Logout</a>
+                        <a href="{%url 'logout'%}" class="btn btn-dark btn-block btn-sm m-1">Logout</a>
                     </ul>
                 </div>
 
@@ -56,7 +56,11 @@
                             <div class="card-body">
                                 <small>Category: {{obj.categories}}</small>
                             </div>
-                            <a href="{%url 'detail' obj.slug%}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            {%if request.user.id == obj.user.id%}
+                                <a href="{%url 'update' obj.id%}" class="btn btn-outline-warning btn-sm m-1">Update</a>
+                                <a href="{%url 'delete' obj.id%}" class="btn btn-outline-danger btn-sm m-1">Delete</a>
+                            {%endif%}
+                                <a href="{%url 'detail' obj.slug%}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
                     {% empty %}
